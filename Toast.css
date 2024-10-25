@@ -1,6 +1,6 @@
 ﻿
 
-   /* Toast kapsayıcısı */
+   
    .toast-container
 
 {
@@ -9,7 +9,7 @@
    right: 20px;
    z-index: 1000;
 }
-/* Toast kutusu */
+
 .toast {
    min-width: 200px;
    max-width: 300px;
