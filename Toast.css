@@ -1,0 +1,57 @@
+﻿
+
+   /* Toast kapsayıcısı */
+   .toast-container
+
+{
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   z-index: 1000;
+}
+/* Toast kutusu */
+.toast {
+   min-width: 200px;
+   max-width: 300px;
+   padding: 15px;
+   margin-bottom: 10px;
+   background-color: #333;
+   color: #fff;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   opacity: 0;
+   transform: translateY(20px);
+   transition: opacity 0.5s ease, transform 0.5s ease;
+   display: flex;
+   align-items: center;
+   font-family: Arial, sans-serif;
+}
+
+   .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+   }
+
+   .toast .close-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 16px;
+      cursor: pointer;
+   }
+
+      .toast .close-btn:hover {
+         color: #fff;
+      }
+
+   .toast.success {
+      background-color: #28a745;
+   }
+
+   .toast.error {
+      background-color: #dc3545;
+   }
+
+
+

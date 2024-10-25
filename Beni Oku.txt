@@ -1,0 +1,6 @@
+1-)Dosyayı wwwroota ekleyin.
+2-)Css ve JS dosyalarının bağlantı linklerini html sayfanıza verin.
+3-)Toast.html dosyasındaki div'i kopyalayıp HTML sayfanıza yapıştırın.
+4-)Form id'sine  id="toastForm" verin.
+5-)Submit butonuna  onclick="submitForm()" fonksiyonu verin.
+6-)Bu Kadar :)

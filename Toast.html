@@ -1,0 +1,109 @@
+<style>
+   /* Toast kapsayıcısı */
+   .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+   }
+   /* Toast kutusu */
+   .toast {
+      min-width: 200px;
+      max-width: 300px;
+      padding: 15px;
+      margin-bottom: 10px;
+      background-color: #333;
+      color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      display: flex;
+      align-items: center;
+      font-family: Arial, sans-serif;
+   }
+
+      .toast.show {
+         opacity: 1;
+         transform: translateY(0);
+      }
+
+      .toast .close-btn {
+         margin-left: auto;
+         background: none;
+         border: none;
+         color: #ccc;
+         font-size: 16px;
+         cursor: pointer;
+      }
+
+         .toast .close-btn:hover {
+            color: #fff;
+         }
+
+      .toast.success {
+         background-color: #28a745;
+      }
+
+      .toast.error {
+         background-color: #dc3545;
+      }
+</style>
+
+
+
+
+
+
+
+
+<!-- Toast kapsayıcısı -->
+<div class="toast-container" id="toastContainer"></div>
+<script>
+   // Formu AJAX ile gönderme fonksiyonu
+   function submitForm() {
+      const form = document.getElementById('toastForm');
+      const formData = new FormData(form);
+
+      // Form içindeki inputları kontrol et
+      const isEmptyField = Array.from(form.elements).some(input => {
+         return input.required && !input.value.trim(); // Boş veya yalnızca boşluk ise
+      });
+
+      if (isEmptyField) {
+         showToast('Lütfen tüm alanları doldurunuz!', 'error');
+         return; // Boş alan varsa gönderme
+      }
+
+      fetch(form.action, {
+         method: form.method,
+         body: formData
+      })
+         .then(response => {
+            if (response.ok) {
+               showToast('Başarıyla kaydedildi!', 'success');
+               form.reset(); // Formu temizle
+            } else {
+               showToast('Bir hata oluştu!', 'error');
+            }
+         })
+         .catch(() => showToast('Bir hata oluştu!', 'error'));
+   }
+
+   // Toast gösterme fonksiyonu
+   function showToast(message, type = 'success') {
+      const toastContainer = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type} show`;
+      toast.innerHTML = `
+                  <span>${message}</span>
+                  <button class="close-btn" onclick="this.parentElement.remove()">×</button>
+               `;
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+         toast.classList.remove('show');
+         setTimeout(() => toast.remove(), 500);
+      }, 5000); // 5 saniye sonra toast kaybolur
+   }
+</script>
